@@ -1,5 +1,10 @@
-'use client';
+'use client'
 
+import { Filter } from 'lucide-react'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { useState } from 'react'
+
+import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,31 +13,26 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-
-import { Button } from '@/components/ui/button';
-import { Filter } from 'lucide-react';
-import { useState } from 'react';
-import { usePathname, useSearchParams, useRouter } from 'next/navigation';
+} from '@/components/ui/dropdown-menu'
 
 export default function FilterDropdown() {
   // state can be '', 'pending' or 'completed'
-  const [filterStatus, setFilterStatus] = useState('');
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const { replace } = useRouter();
+  const [filterStatus, setFilterStatus] = useState('')
+  const searchParams = useSearchParams()
+  const pathname = usePathname()
+  const { replace } = useRouter()
 
   function handleChangeFilter(value: string) {
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(searchParams)
 
     if (value) {
-      params.set('status', value);
+      params.set('status', value)
     } else {
-      params.delete('status');
+      params.delete('status')
     }
 
-    replace(`${pathname}?${params.toString()}`);
-    setFilterStatus(value);
+    replace(`${pathname}?${params.toString()}`)
+    setFilterStatus(value)
   }
 
   return (
@@ -65,5 +65,5 @@ export default function FilterDropdown() {
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }

@@ -1,7 +1,8 @@
-'use client';
+'use client'
 
-import { Button } from './ui/button';
-import { Trash } from 'lucide-react';
+import { Trash } from 'lucide-react'
+
+import { Button } from './ui/button'
 
 export default function DeleteButton() {
   return (
@@ -11,5 +12,5 @@ export default function DeleteButton() {
         <Trash className="w-4 text-red-500" />
       </Button>
     </form>
-  );
+  )
 }

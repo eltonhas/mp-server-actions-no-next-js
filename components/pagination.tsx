@@ -1,4 +1,6 @@
-'use client';
+'use client'
+
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 import {
   Pagination as PaginationComponent,
@@ -8,38 +10,37 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from '@/components/ui/pagination';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+} from '@/components/ui/pagination'
 
 type PaginationProps = {
   links: {
-    url: string;
-    label: string;
-    active: boolean;
-    id: number;
-  }[];
-  lastPage: number;
-};
+    url: string
+    label: string
+    active: boolean
+    id: number
+  }[]
+  lastPage: number
+}
 
 export default function Pagination({ links, lastPage }: PaginationProps) {
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const { replace } = useRouter();
+  const searchParams = useSearchParams()
+  const pathname = usePathname()
+  const { replace } = useRouter()
 
   function handleClickPage(pageNumber: number) {
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(searchParams)
 
     if (pageNumber > 1) {
       if (pageNumber > lastPage) {
-        params.set('page', lastPage.toString());
+        params.set('page', lastPage.toString())
       } else {
-        params.set('page', pageNumber.toString());
+        params.set('page', pageNumber.toString())
       }
     } else {
-      params.delete('page');
+      params.delete('page')
     }
 
-    replace(`${pathname}?${params.toString()}`, { scroll: false });
+    replace(`${pathname}?${params.toString()}`, { scroll: false })
   }
   return (
     <PaginationComponent>
@@ -59,7 +60,7 @@ export default function Pagination({ links, lastPage }: PaginationProps) {
 
         {links.map((link) => {
           if (link.label.includes('Previous') || link.label.includes('Next')) {
-            return null;
+            return null
           }
 
           if (link.label === '...') {
@@ -67,7 +68,7 @@ export default function Pagination({ links, lastPage }: PaginationProps) {
               <PaginationItem key={link.id} className="hidden md:inline-flex">
                 <PaginationEllipsis />
               </PaginationItem>
-            );
+            )
           }
 
           return (
@@ -78,7 +79,7 @@ export default function Pagination({ links, lastPage }: PaginationProps) {
                 dangerouslySetInnerHTML={{ __html: link.label }}
               ></PaginationLink>
             </PaginationItem>
-          );
+          )
         })}
 
         <PaginationItem
@@ -122,5 +123,5 @@ export default function Pagination({ links, lastPage }: PaginationProps) {
         </PaginationItem> */}
       </PaginationContent>
     </PaginationComponent>
-  );
+  )
 }

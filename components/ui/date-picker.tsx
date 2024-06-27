@@ -1,24 +1,28 @@
-'use client';
+'use client'
 
-import * as React from 'react';
-import { format } from 'date-fns';
-import { Calendar as CalendarIcon } from 'lucide-react';
+import { format } from 'date-fns'
+import { Calendar as CalendarIcon } from 'lucide-react'
+import * as React from 'react'
 
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { Calendar } from '@/components/ui/calendar';
+import { Button } from '@/components/ui/button'
+import { Calendar } from '@/components/ui/calendar'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
+} from '@/components/ui/popover'
+import { cn } from '@/lib/utils'
 
-export function DatePicker({ onSelect }: { onSelect: (date: Date | undefined) => void }) {
-  const [date, setDate] = React.useState<Date>();
+export function DatePicker({
+  onSelect,
+}: {
+  onSelect: (date: Date | undefined) => void
+}) {
+  const [date, setDate] = React.useState<Date>()
 
   function handleSelect(date: Date | undefined) {
-    onSelect(date);
-    setDate(date);
+    onSelect(date)
+    setDate(date)
   }
 
   return (
@@ -27,8 +31,8 @@ export function DatePicker({ onSelect }: { onSelect: (date: Date | undefined) =>
         <Button
           variant={'outline'}
           className={cn(
-            ' justify-start text-left font-normal',
-            !date && 'text-muted-foreground'
+            'justify-start text-left font-normal',
+            !date && 'text-muted-foreground',
           )}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
@@ -44,5 +48,5 @@ export function DatePicker({ onSelect }: { onSelect: (date: Date | undefined) =>
         />
       </PopoverContent>
     </Popover>
-  );
+  )
 }

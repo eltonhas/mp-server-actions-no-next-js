@@ -1,8 +1,11 @@
-'use client';
+'use client'
 
 /* eslint-disable react/no-unescaped-entities */
-import * as React from 'react';
-import { Button } from '@/components/ui/button';
+import { PlusCircle } from 'lucide-react'
+import * as React from 'react'
+import { useMediaQuery } from 'usehooks-ts'
+
+import { Button } from '@/components/ui/button'
 import {
   Dialog,
   DialogContent,
@@ -10,7 +13,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog';
+} from '@/components/ui/dialog'
 import {
   Drawer,
   DrawerClose,
@@ -20,14 +23,13 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from '@/components/ui/drawer';
-import { useMediaQuery } from 'usehooks-ts';
-import { PlusCircle } from 'lucide-react';
-import OrderForm from './order-form';
+} from '@/components/ui/drawer'
+
+import OrderForm from './order-form'
 
 export function DrawerDialog() {
-  const [open, setOpen] = React.useState(false);
-  const isDesktop = useMediaQuery('(min-width: 768px)');
+  const [open, setOpen] = React.useState(false)
+  const isDesktop = useMediaQuery('(min-width: 768px)')
 
   if (isDesktop) {
     return (
@@ -48,7 +50,7 @@ export function DrawerDialog() {
           <OrderForm />
         </DialogContent>
       </Dialog>
-    );
+    )
   }
 
   return (
@@ -66,7 +68,7 @@ export function DrawerDialog() {
             Cadastre um pedido. Clique em salvar quando terminar.
           </DrawerDescription>
         </DrawerHeader>
-        <div className='p-4'>
+        <div className="p-4">
           <OrderForm />
         </div>
         <DrawerFooter className="pt-2">
@@ -76,5 +78,5 @@ export function DrawerDialog() {
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
-  );
+  )
 }
