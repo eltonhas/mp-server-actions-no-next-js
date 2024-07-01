@@ -97,7 +97,7 @@ export default function OrdersTable({ orders }: OrdersTableProps) {
               {formatter.format(order.amount_in_cents / 100)}
             </TableCell>
             <TableCell className="text-right">
-              <DeleteButton />
+              <DeleteButton orderId={order.id} />
             </TableCell>
           </TableRow>
         ))}
